@@ -1,0 +1,80 @@
+<style>
+table{
+table-layout: fixed;
+  width:200px;
+  height:200px;
+  border-collapse: collapse;
+  border-style: hidden;
+}
+th, td {
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid black;
+}
+</style>
+<html>
+<table>
+  <tr>
+    <th id="1" onclick="select(this)">&nbsp;</th>
+    <th id="2" onclick="select(this)">&nbsp;</th> 
+    <th id="3" onclick="select(this)">&nbsp;</th>
+  </tr>
+  <tr>
+    <td id="4" onclick="select(this)">&nbsp;</td>
+    <td id="5" onclick="select(this)">&nbsp;</td> 
+    <td id="6" onclick="select(this)">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="7" onclick="select(this)">&nbsp;</td>
+    <td id="8" onclick="select(this)">&nbsp;</td> 
+    <td id="9" onclick="select(this)">&nbsp;</td>
+  </tr>
+</table>
+</html>
+<script>
+var cturn="O";
+function select(e){
+  if(document.getElementById(e.id).innerHTML=="&nbsp;") document.getElementById(e.id).innerHTML = cturn;
+  if(isover()==true) document.write(cturn+" WON!! <button onclick='window.location.reload()'>play again</button>");
+  turn();
+}
+function turn(){
+  if(cturn=="O"){ cturn="X" }else{ cturn="O" };
+}
+function isover(){
+  for(var i=1, result=0; i<4; i++){
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+  for(var i=1, result=0; i<8; i+=3){ 
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+  for(var i=2, result=0; i<9; i+=3){
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+  for(var i=3, result=0; i<10; i+=3){
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+  for(var i=1, result=0; i<10; i+=4){
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+  for(var i=4, result=0; i<7; i++){
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+  for(var i=7, result=0; i<10; i++){
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+  for(var i=7, result=0; i>2; i-=2){
+    if(document.getElementById(i).innerHTML==cturn) result++;
+    if(result==3) return true;
+  }
+
+  return false;
+}
+</script>
