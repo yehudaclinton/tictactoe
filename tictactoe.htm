@@ -13,6 +13,7 @@ th, td {
 }
 </style>
 <html>
+<p id="header">Welcome to tictactoe</p>
 <table>
   <tr>
     <th id="1" onclick="select(this)">&nbsp;</th>
@@ -35,11 +36,12 @@ th, td {
 var cturn="O";
 function select(e){
   if(document.getElementById(e.id).innerHTML=="&nbsp;") document.getElementById(e.id).innerHTML = cturn;
-  if(isover()==true) document.write(cturn+" WON!! <button onclick='window.location.reload()'>play again</button>");
   turn();
 }
 function turn(){
+  if(isover()==true) document.getElementById("header").innerHTML=cturn+" WON!! <button onclick='window.location.reload()'>play again</button>";
   if(cturn=="O"){ cturn="X" }else{ cturn="O" };
+  if(cturn=="X") aimove();
 }
 function isover(){
   for(var i=1, result=0; i<4; i++){
@@ -76,5 +78,86 @@ function isover(){
   }
 
   return false;
+}
+function aimove(){
+  var close;
+  for(var i=1, result=0; i<4; i++){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      console.log("h1 "+close);
+      document.getElementById(close).innerHTML="X";
+      turn();
+      return;
+    }
+  }
+  for(var i=1, result=0; i<8; i+=3){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      document.getElementById(close).innerHTML="X";
+      console.log("h2 "+close);
+      turn();
+      return;
+    }
+  }
+  for(var i=2, result=0; i<9; i+=3){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      document.getElementById(close).innerHTML="X";
+      console.log("h3 "+close);
+      turn();
+      return;
+    }
+  }
+  for(var i=3, result=0; i<10; i+=3){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      document.getElementById(close).innerHTML="X";
+      console.log("h4 "+close);
+      turn();
+      return;
+    }
+  }
+  for(var i=1, result=0; i<10; i+=4){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      document.getElementById(close).innerHTML="X";
+      console.log("h5 "+close);
+      turn();
+      return;
+    }
+  }
+  for(var i=4, result=0; i<7; i++){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      document.getElementById(close).innerHTML="X";
+      console.log("h6 "+close);
+      turn();
+      return;
+    }
+  }
+  for(var i=7, result=0; i<10; i++){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      document.getElementById(close).innerHTML="X";
+      console.log("h7 "+close);
+      turn();
+      return;
+    }
+  }
+  for(var i=7, result=0; i>2; i-=2){
+    if(document.getElementById(i).innerHTML=="O") result++; else if(document.getElementById(i).innerHTML=="&nbsp;") close=i;
+    if(result==2&&close!=null){
+      document.getElementById(close).innerHTML="X";
+      turn();
+      return;
+    }
+  }
+  for(var i=1; i<10; i++){
+    if(document.getElementById(i).innerHTML=="&nbsp;"){
+      document.getElementById(close).innerHTML="X";
+      turn();
+      return;
+    }
+  }
 }
 </script>
